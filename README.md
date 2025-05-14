@@ -67,7 +67,7 @@ https://www.alchemy.com/
 
 ### Poetry Package Manager Installer
 Ensure you have Python3.11 or above installed first.
-curl -sSL https://install.python-poetry.org | python3 -
+```curl -sSL https://install.python-poetry.org | python3 -```
 
 #### Poetry Config Essentials
 If you haven't used Poetry before:
