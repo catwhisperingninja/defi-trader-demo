@@ -14,7 +14,6 @@ This is my way of proving that the private repo actually exists.
 - Token price data from Alchemy Price API
 - EMA-12, EMA-26, MACD, signal indicator calculations + execution threshold calculation
 - Continuous logging of market state and buy/sell signals with which to populate future database for backtesting
-- Stand-alone command-line execution – no additional services required
 - Configured for the Poetry package manager
 
 ---
