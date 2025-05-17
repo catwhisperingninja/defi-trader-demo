@@ -116,7 +116,7 @@ poetry run python uni_handler.py
 ## Disclaimers
 
 1. Production repo includes a far larger feature set: gas fee analysis, standardized calculation methods, Flashbots, etc.
-2. Still debugging Azure Key Vault for secure secret management due to persistent issues with a critical dependency upgrade breaking the Azure CLI *and* causing other issues affecting the Azure SDK. I will fix this next. 
+2. Azure Key Vault integration is temporarily disabled due to a dependency conflict affecting both CLI and SDK authentication modules. I’m evaluating a fix or bypass using direct SDK calls, and will update once resolved.
 3. Production repo contains extensive test suite.
 4. Math here is acknowledged as a mess; I know, it's been fixed on the production repo.
 5. You must immediately convert all price API reponses to wei and calculate as an integer on the backend.
