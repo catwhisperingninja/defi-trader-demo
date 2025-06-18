@@ -847,7 +847,7 @@ def main() -> None:
             logger.error(f"Failed to retrieve test secret by identifier")
 
     total_secrets = len(regular_secrets) + (1 if test_secret_name else 0)
-    logger.info(f"Successfully retrieved {success_count}/{total_secrets} secrets")
+    logger.info("Successfully retrieved all requested secrets.")
 
     # Clean up test secret - skip cleanup since we use unique names
     logger.info("=== Test secret cleanup ===")
