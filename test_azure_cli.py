@@ -823,7 +823,14 @@ def main() -> None:
                 success_count += 1
                 logger.info(f"Successfully retrieved secret {secret_index} of {len(regular_secrets)}")
             else:
-                logger.error(f"Failed to retrieve secret {secret_index} of {len(regular_secrets)}")
+                logger.error("Failed to retrieve a secret.")
+ Error
+Clear-text logging of sensitive information
+This expression logs  as clear text.
+This expression logs  as clear text.
+If sensitive data is written to a log entry it could be exposed to an attacker who gains access to the logs.
+
+
         else:
              logger.error("No identifier available for one of the requested secrets.")
 
