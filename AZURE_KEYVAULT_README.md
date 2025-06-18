@@ -50,7 +50,7 @@ Short version:
     ObjectID, as might be sensibly assumed, is the "username" for this SP.
   - SPs can be granted a frightening level of tenant-wide power.
 
-## SPs Are One of any Azure Tenant's Main Attack Vectors
+## SPs Are One of Any Azure Tenant's Main Attack Vectors
 
 - Do not be lulled into granting this thing resource-group wide permission scope
   with some KeyVault roles and call it a day.
@@ -159,8 +159,10 @@ This test validates:
 ```bash
 poetry run python test_azure_cli.py
 ```
+
 ## Live Example of Testing
-_The SP no longer exists._ It was deleted the second I uploaded the videos. 
+
+_The SP no longer exists._ It was deleted the second I uploaded the videos.
 
 https://github.com/user-attachments/assets/e495d9c6-e258-4606-9191-78aefb7deed9
 
@@ -173,9 +175,3 @@ poetry run python pydantic_trader/azure-cli/initialize_key_vault_cli.py
 ```
 
 https://github.com/user-attachments/assets/058c86c3-55b5-433d-ab28-37e1a29e50c9
-
-
-
-
-
-
