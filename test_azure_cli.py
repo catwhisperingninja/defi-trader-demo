@@ -825,7 +825,7 @@ def main() -> None:
             else:
                 logger.error(f"Failed to retrieve secret {secret_index} of {len(regular_secrets)}")
         else:
-            logger.error("No identifier available for one of the requested secrets.")
+             logger.error("No identifier available for one of the requested secrets.")
 
         secret_index += 1
 
