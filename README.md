@@ -7,7 +7,8 @@ whether to execute a buy, sell, or nothing.
 
 No on-testnet-chain transactions are executed. It's just logs flying by.
 
-Azure KeyVault now included.
+Azure KeyVault now included! See
+[AZURE_KEYVAULT_README.md](AZURE_KEYVAULT_README.md) for setup instructions.
 
 This is my way of proving that the private repo actually exists.
 
@@ -38,7 +39,7 @@ Standard Python is fine. You'll want to ignore _.json and _.log, and of course
 Create a file named exactly "price_history.json" at root level of project. Place
 this in your own .gitignore file as it will get huge.
 
-You don't \_have\* to do this, I suppose.
+You don't _have_ to do this, I suppose.
 
 ### Sign Up with Alchemy for API Access
 
