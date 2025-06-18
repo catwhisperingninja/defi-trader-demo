@@ -106,7 +106,7 @@ Use role definition IDs, not role names, for future-proofing.
 az role definition list --query "[?contains(roleName, 'Key Vault')].{RoleName:roleName, RoleId:name}" --output table
 ```
 
-- Assign minimal required role (typically "Key Vault Secrets Reader"):
+- Assign minimal required role IDs (typically "Key Vault Secrets Reader"):
 
 ```bash
 az role assignment create <actual_ObjectID_not_APP_ID> --assignee-principal-type ServicePrincipal --role-definition-id <id-value-from-list> --scope "/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/AZURE_RESOURCE_GROUP/providers/Microsoft.KeyVault/vaults/AZURE_KEYVAULT_NAME"
@@ -119,7 +119,7 @@ Azure considers them certificates. Super fun.)
 You could one-up me by creating read-only SPs and write-only SPs, certainly.
 This is just a demo. The SP was nuked a long time ago.
 
-# Set up sensitive environment variables
+# Set up critically sensitive environment variables
 
 ```bash
 cp .env.example .env
@@ -155,6 +155,12 @@ This test validates:
   names or values
 - **Production Code Integration**: Tests actual Azure CLI commands and Key Vault
   operations
+
+Only _secret identifiers_ are used to ID the secrets, and even those are not
+displayed.
+
+Only ever use the secret identifiers. Do not interact directly with secrets
+programmatically.
 
 ```bash
 poetry run python test_azure_cli.py
