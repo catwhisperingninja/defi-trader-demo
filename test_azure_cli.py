@@ -823,7 +823,7 @@ def main() -> None:
                 success_count += 1
                 logger.info(f"Successfully retrieved secret {secret_index} of {len(regular_secrets)}")
             else:
-                logger.error("Failed to retrieve a secret.")
+                 logger.error("Failed to retrieve a secret during the retrieval process.")
  Error
 Clear-text logging of sensitive information
 This expression logs  as clear text.
