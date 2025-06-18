@@ -8,6 +8,8 @@ import importlib.util
 # Handle the hyphen in directory name by using direct file path loading
 azure_cli_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'pydantic_trader', 'azure-cli', 'azure_key_vault_cli.py')
 spec = importlib.util.spec_from_file_location("azure_key_vault_cli", azure_cli_path)
+if spec is None or spec.loader is None:
+    raise ImportError("Could not load azure_key_vault_cli module")
 key_vault_module = importlib.util.module_from_spec(spec)
 sys.modules["azure_key_vault_cli_key_vault"] = key_vault_module
 spec.loader.exec_module(key_vault_module)

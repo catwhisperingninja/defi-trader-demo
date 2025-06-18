@@ -8,13 +8,53 @@ package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.11"
+setuptools = "^80.0.0"
+web3 = "^6.0.0"
+numpy = "^1.24.0"
+eth-typing = "^3.0.0"
+eth-account = "^0.10.0"
+python-dotenv = "^1.0.0"
+dotenv = "^0.9.9"
+aiohttp = "^3.11.12"
+pyjwt = "^2.10.1"
+cryptography = {version = ">=40.0.0,<41.0.0", python = ">=3.9.1,<4.0"}
+argparse = "^1.4.0"
+web3-data-tools = "^1.2.0"
+pytest = "^8.3.5"
+pytest-asyncio = "^0.25.3"
+h11 = "0.16.0"
 azure-keyvault = "4.2.0"
 azure-identity = "1.21.0"
 azure-cli = "^2.72.0"
-web3 = "^6.0.0"
-python-dotenv = "^1.0.0"
-cryptography = {version = ">=40.0.0,<41.0.0", python = ">=3.9.1,<4.0"}
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.3.0"
+isort = "^5.12.0"
+pytest = "^8.3.5"
+pytest-asyncio = "^0.25.3"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 100
+target-version = ['py311']
+
+[tool.mypy]
+strict = true
+ignore_missing_imports = true
+
+[tool.isort]
+profile = "black"
+line_length = 100
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["pydantic_trader/tests"]
+python_files = "test_*.py"
+python_functions = "test_*"
+asyncio_default_fixture_loop_scope = "function"
+markers = [
+    "asyncio: mark a test as an asyncio test",
+]

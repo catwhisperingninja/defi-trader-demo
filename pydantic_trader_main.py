@@ -3,7 +3,7 @@ import sys
 import json
 import asyncio
 import logging
-from typing import Dict, Optional, List
+from typing import Dict, Optional, List, Any
 from dotenv import load_dotenv
 
 from web3 import Web3
@@ -27,7 +27,7 @@ logger = logging.getLogger(__name__)
 
 class SepoliaConfig:
     """Configuration for Sepolia testnet"""
-    def __init__(self):
+    def __init__(self) -> None:
         # Explicitly print out environment variables for debugging
         logger.debug("ALCHEMY_RPC_URL loaded from env")
 
@@ -102,7 +102,7 @@ class UniswapTrading:
             logger.critical(f"Account initialization failed: {e}")
             raise
 
-    def _load_abis(self):
+    def _load_abis(self) -> None:
         """Load contract ABIs with error handling"""
         try:
             with open('uniswap_abis.json', 'r') as f:
@@ -115,7 +115,7 @@ class UniswapTrading:
             logger.critical("Invalid JSON in uniswap_abis.json")
             raise
 
-    def _load_contracts(self):
+    def _load_contracts(self) -> None:
         """Load Uniswap contracts with error handling"""
         try:
             self.factory = self.w3.eth.contract(
@@ -131,7 +131,7 @@ class UniswapTrading:
             logger.critical(f"Contract loading failed: {e}")
             raise
 
-    async def check_pool_status(self, token0: str, token1: str, fee_tiers: List[int] = [3000]) -> Optional[Dict]:
+    async def check_pool_status(self, token0: str, token1: str, fee_tiers: List[int] = [3000]) -> Optional[Dict[str, Any]]:
         """
         Check Uniswap V3 pool status with Sepolia testnet fee tiers
 
@@ -240,7 +240,7 @@ DEFAULT_POOLS = [
     }
 ]
 
-async def main():
+async def main() -> None:
     """Main async function to demonstrate trading setup"""
     try:
         # Use environment variable for private key

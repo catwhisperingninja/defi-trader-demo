@@ -1,5 +1,5 @@
 import numpy as np
-from typing import Dict, List, Tuple, Optional
+from typing import Dict, List, Tuple, Optional, Any
 import logging
 from decimal import Decimal
 import asyncio
@@ -114,7 +114,13 @@ class UniswapPoolAnalyzer:
         # Load saved price history if available
         self.load_price_history()
 
-    def save_price_history(self):
+    def _get_trading_pair_name(self, token0: str, token1: str) -> str:
+        """Get friendly trading pair name from token addresses"""
+        token0_symbol = self.token_symbols.get(token0.lower(), "UNKNOWN")
+        token1_symbol = self.token_symbols.get(token1.lower(), "UNKNOWN")
+        return f"{token0_symbol}/{token1_symbol}"
+
+    def save_price_history(self) -> None:
         """Save price histories to JSON file"""
         try:
             # Convert price histories to serializable format
@@ -134,7 +140,7 @@ class UniswapPoolAnalyzer:
         except Exception as e:
             logger.error(f"Failed to save price history: {e}")
 
-    def load_price_history(self):
+    def load_price_history(self) -> None:
         """Load price histories from JSON file if it exists"""
         try:
             if not os.path.exists(self.price_history_file):
@@ -161,7 +167,7 @@ class UniswapPoolAnalyzer:
             # Initialize empty if load fails
             self.price_histories = {}
 
-    async def get_token_price(self, token_symbol: str) -> Optional[Dict]:
+    async def get_token_price(self, token_symbol: str) -> Optional[Dict[str, Any]]:
         """
         Get token price from Alchemy Price Feeds API using symbol
 
@@ -205,7 +211,7 @@ class UniswapPoolAnalyzer:
             logger.warning(f"Price fetch failed: {e}")
             return None
 
-    async def update_market_state(self, token0: str, token1: str, fee: int = 3000, pool_address: Optional[str] = None) -> Optional[Dict]:
+    async def update_market_state(self, token0: str, token1: str, fee: int = 3000, pool_address: Optional[str] = None) -> Optional[Dict[str, Any]]:
         """
         Update market state with pool information and technical indicators
 
@@ -223,7 +229,9 @@ class UniswapPoolAnalyzer:
             token0_checksum = Web3.to_checksum_address(token0)
             token1_checksum = Web3.to_checksum_address(token1)
 
-            logger.info(f"Updating market state for {token0_checksum}/{token1_checksum}")
+            # Get friendly trading pair name
+            pair_name = self._get_trading_pair_name(token0_checksum, token1_checksum)
+            logger.info(f"Updating market state for Sepolia trading pair {pair_name}")
 
             # Initialize price history for this token if not exists
             if token0_checksum.lower() not in self.price_histories:
@@ -264,22 +272,26 @@ class UniswapPoolAnalyzer:
                     )
 
                     # Fallback to factory lookup
-                    pool_status = await self.trading.check_pool_status(
+                    pool_status_result = await self.trading.check_pool_status(
                         token0_checksum, token1_checksum, [fee]
                     )
 
-                    if not pool_status:
+                    if not pool_status_result:
                         logger.error("Factory lookup did not return a valid pool address")
                         return None
+
+                    pool_status = pool_status_result
 
             # If no pool address or retrieval failed, try finding pool
             else:
                 # Get current pool status
-                pool_status = await self.trading.check_pool_status(token0_checksum, token1_checksum, [fee])
+                pool_status_result = await self.trading.check_pool_status(token0_checksum, token1_checksum, [fee])
 
-                if not pool_status:
+                if not pool_status_result:
                     logger.warning(f"No pool found for {token0_checksum}/{token1_checksum}")
                     return None
+
+                pool_status = pool_status_result
 
             # Try to fetch token prices
             try:
@@ -352,7 +364,7 @@ class TradingStrategy:
         self.pool_analyzer = pool_analyzer
         self.trail_percent = 0.02  # 2% trailing stop
 
-    async def analyze_signals(self, market_state: Dict) -> List[Dict]:
+    async def analyze_signals(self, market_state: Dict[str, Any]) -> List[Dict[str, Any]]:
         """
         Analyze market signals and generate trading actions
 
@@ -400,7 +412,7 @@ class TradingStrategy:
             return []
 
 # Add main block to demonstrate usage
-async def main():
+async def main() -> None:
     """
     Demonstrate UniswapPoolAnalyzer and TradingStrategy functionality
     """
@@ -484,7 +496,7 @@ async def main():
         logger.error(f"An error occurred: {e}", exc_info=True)
         sys.exit(1)  # Exit with error code
 
-async def process_pool(pool: Dict, pool_analyzer, trading_strategy):
+async def process_pool(pool: Dict[str, Any], pool_analyzer: UniswapPoolAnalyzer, trading_strategy: TradingStrategy) -> None:
     """
     Process a single pool
 
@@ -532,7 +544,7 @@ async def process_pool(pool: Dict, pool_analyzer, trading_strategy):
         logger.error(f"Error processing pool {pool['name']}: {e}")
         return  # Continue with other pools instead of exiting
 
-def signal_handler(sig, frame):
+def signal_handler(sig: int, frame: Any) -> None:
     print('You pressed Ctrl+C!')
     # Perform any necessary cleanup here
     sys.exit(0)
