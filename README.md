@@ -16,9 +16,9 @@ This is my way of proving that the private repo actually exists.
 
 ## Features
 
-- Real-time data fetched from ETH mainnet via Dune Analytics
+- Real-time data fetched from ETH mainnet via Alchemy API (production repo uses Dune Analytics)
 - EMA-12, EMA-26, MACD, signal indicator calculations + execution threshold
-  calculation
+  calculation via Alchemy API
 - Continuous logging of market state and buy/sell signals with which to populate
   future database for backtesting
 - Configured for the Poetry package manager
