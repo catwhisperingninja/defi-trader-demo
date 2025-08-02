@@ -39,7 +39,7 @@ https://www.alchemy.com/
 - Free. They make this easy. Love you, Alchemy. Nice work.
 - Create an app. Enable the _SEPOLIA_ RPC endpoints. NOT the
   mainnet ETH ones, as well as the Prices API, Token API, etc., as desired.
-- Take note of your APP ID. This is NOT your API key. You still need it.
+- Take note of your APP ID, which is NOT your API key. Both are required.
 - Grab a NEW ETH browser extension crypto wallet
   - (_NEW!_ Yes, because you don't want this privkey associated with any of your actual funds. This is a demo.)
 - Set wallet to SEPOLIA testnet
