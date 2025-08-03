@@ -115,11 +115,11 @@ nightmare:
 
 `Azure Connected Machine Onboarding`
 
-And over a weekend...wow. Nice global-scale Kubernetes fleet you got there. Hope
-you set budget alerts!
+And over a weekend...wow. Nice global-scale Kubernetes fleet you got there! Hope
+you set budget alerts...
 
-SPs with powerful roles can be profoundly destructed if left unattended and then
-exploited.
+SPs with powerful roles can be profoundly destructive if left unattended and
+then exploited.
 
 ## RBAC Role Definition ID Assignments
 
