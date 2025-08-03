@@ -28,6 +28,7 @@ https://www.alchemy.com/
 | -------------------- | ---------------------------------------------------------------------------------------------------------------------- |
 | `ALCHEMY_RPC_URL`    | HTTPS RPC endpoint for the Sepolia test network                                                                        |
 | `ALCHEMY_API_KEY`    | Alchemy Price Feeds API key                                                                                            |
+| `ALCHEMY_APP_ID`     | Alchemy App ID                                                                                                         |
 | `WALLET_PRIVATE_KEY` | Used on the backend to display wallet balance (the key itself is **never** printed or logged, _see disclaimer at end_) |
 
 ## Poetry Package Manager Installation
