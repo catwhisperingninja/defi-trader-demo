@@ -83,9 +83,9 @@ options:
 - If your command fails, you still receive error messages.
 - Use when command output can be retrieved at a later time.
 
-## Lockdown Service Principal Permission Scope
+# Lockdown Service Principal Permission Scope
 
-# Login as your Service Principal
+## Login as your Service Principal
 
 First locally set the values in your terminal using a secure option described
 above:
@@ -103,7 +103,7 @@ Then login as your SP:
 az login --service-principal -u $AZURE_APP_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID
 ```
 
-### Lockdown SP Scope _ASAP_
+## Lockdown
 
 ```bash
 az role assignment create --assignee-object-id ObjectID --assignee-principal-type ServicePrincipal --scope "/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/AZURE_RESOURCE_GROUP/providers/Microsoft.KeyVault/vaults/AZURE_KEYVAULT_NAME"
