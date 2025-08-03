@@ -66,7 +66,8 @@ Short version:
 
 ### None Output Format
 
-- Some Azure CLI commands output information you must protect:
+#### Some Azure CLI commands output information you must protect:
+
 - Passwords
 - Connection strings
 - Secrets
