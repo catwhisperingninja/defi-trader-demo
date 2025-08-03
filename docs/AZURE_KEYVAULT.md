@@ -125,21 +125,21 @@ exploited.
 
 Use role definition IDs, not role names, for future-proofing.
 
-### List KeyVault role definitions:
+### List KeyVault role definitions with role ID values:
 
 ```bash
-az role definition list --query "[?contains(roleName, 'Key Vault')].{RoleName:roleName, RoleId:name}" --output table
+az role definition list --output json --query '[].{roleName:roleName, description:description, id:id}'
 ```
 
 - Assign minimal required role IDs (typically "Key Vault Secrets Reader"):
 
 ```bash
-az role assignment create <actual_ObjectID_not_APP_ID> --assignee-principal-type ServicePrincipal --role-definition-id <id-value-from-list> --scope "/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/AZURE_RESOURCE_GROUP/providers/Microsoft.KeyVault/vaults/AZURE_KEYVAULT_NAME"
+az role assignment create ObjectID --assignee-principal-type ServicePrincipal --role-definition-id ID-value --scope "/subscriptions/AZURE_SUBSCRIPTION_ID/resourceGroups/AZURE_RESOURCE_GROUP/providers/Microsoft.KeyVault/vaults/AZURE_KEYVAULT_NAME"
 ```
 
 You'll want at least KeyVault Reader and likely both Secrets User/Officer and
 Certificate User/Officer (if you wish to manage SSH keys through KeyVault, as
-Azure considers them certificates. Super fun.)
+Azure considers them certificates.)
 
 You could one-up me by creating read-only SPs and write-only SPs, certainly.
 This is just a demo. The SP was nuked a long time ago.

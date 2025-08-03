@@ -1,4 +1,4 @@
-# Trading Guide
+# Trading Guide (_trading non-functional in this demo repo_)
 
 ## Repository Structure (relevant files)
 
