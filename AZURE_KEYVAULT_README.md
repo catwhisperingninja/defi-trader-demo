@@ -30,7 +30,7 @@ Self-explanatory, except for:
 - Add your public IP address
 - I consider it ok to "allow trusted M$ services to bypass firewall"
 
-# Azure's Terrible, Horrible Programmtic Identity Auth
+# Azure's Terrible, Horrible Programmatic Identity Auth
 
 Short version:
 
